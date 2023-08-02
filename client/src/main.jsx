@@ -3,11 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { configureStore } from "@reduxjs/toolkit";
-import globalReducer from "..src/state";
+import globalReducer from "../src/state";
 import { Provider } from "react-redux";
-import { setupListeners } from "@reduxjs/toolkit/query";
-import { api } from "state/api";
-
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { api } from "../src/state/api";
 const store = configureStore({
   reducer: {
     global: globalReducer,
@@ -15,6 +14,7 @@ const store = configureStore({
   },
   middleware: (getDefault) => getDefault().concat(api.middleware),
 });
+
 setupListeners(store.dispatch);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
